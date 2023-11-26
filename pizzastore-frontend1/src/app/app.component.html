@@ -1,94 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" style="color:white;">Pizza Store</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+    aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarColor02">
-     <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-           <a class="nav-link" >Add Pizza <span class="sr-only">(current)</span></a>
-        </li>
-     </ul>
-     <!-- search form -->
-     <form class="form-inline my-2 my-lg-0">
-        <input type="search" ngModel
-         name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search pizza..." required>
-     </form>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link">Add Pizza <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <!-- search form -->
+    <form class="form-inline my-2 my-lg-0">
+      <input type="search" ngModel name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search pizza..."
+        required>
+    </form>
   </div>
 </nav>
 
 <div class="container">
-<div *ngFor="let product of products" class="row" id="team">
-    <!-- TEAM MEMBER 1 - START -->
-    <div class="col-xs-6 col-sm-3">
-        <div class="team-member">
-            <div class="overlay-wrapper2">
-                <img src="{{ product.images[0] }}" class="img-responsive" alt="">
-                <span class="overlay" style="display: none;">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                </span>
-            </div>
-            <h4>John Doe</h4>
-            <span>CEO</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec nulla sagittis, scelerisque mi vitae.</p>
-    	</div>
+  <div class="row" id="team">
+    <div *ngFor="let product of products" class="col-xs-6 col-sm-3">
+      <!-- TEAM MEMBER 1 - START -->
+      <div class="team-member">
+        <div class="overlay-wrapper2">
+          <img src="{{ product?.images[0] }}" class="img-responsive" alt="{{ product?.name }}-image">
+          <span class="overlay" style="display: none;">
+            <a href=""><i class="fa fa-facebook"></i></a>
+            <a href=""><i class="fa fa-twitter"></i></a>
+            <a href=""><i class="fa fa-linkedin"></i></a>
+          </span>
+        </div>
+        <h4>{{ product?.price }}</h4>
+        <span>{{ product?.name }}</span>
+        <p>{{ product?.description }}</p>
+      </div>
+      <!-- TEAM MEMBER 1 - END -->
     </div>
-    <!-- TEAM MEMBER 1 - END -->
-    
-    <!-- TEAM MEMBER 2 - START -->
-    <div class="col-xs-6 col-sm-3">
-    	<div class="team-member">
-            <div class="overlay-wrapper2">
-                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="img-responsive" alt="">
-                <span class="overlay" style="display: none;">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                </span>
-            </div>
-            <h4>John Doe</h4>
-            <span>Project Manager</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec nulla sagittis, scelerisque mi vitae.</p>
-    	</div>
-    </div>
-    <!-- TEAM MEMBER 2 - END -->
-    
-    <!-- TEAM MEMBER 3 - START -->
-    <div class="col-xs-6 col-sm-3">
-    	<div class="team-member">
-            <div class="overlay-wrapper2">
-                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="img-responsive" alt="">
-                <span class="overlay" style="display: none;">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                </span>
-            </div>
-            <h4>John Doe</h4>
-            <span>Webdesigner</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec nulla sagittis, scelerisque mi vitae.</p>
-    	</div>
-    </div>
-    <!-- TEAM MEMBER 3 - END -->
-    
-    <!-- TEAM MEMBER 4 - START -->
-    <div class="col-xs-6 col-sm-3">
-    	<div class="team-member">
-            <div class="overlay-wrapper2">
-                <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="img-responsive" alt="">
-                <span class="overlay" style="display: none;">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                </span>
-            </div>
-            <h4>John Doe</h4>
-            <span>Photographer</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec nulla sagittis, scelerisque mi vitae.</p>
-    	</div>
-    </div>
-    <!-- TEAM MEMBER 4 - END -->
-</div>
+  </div>
 </div>
