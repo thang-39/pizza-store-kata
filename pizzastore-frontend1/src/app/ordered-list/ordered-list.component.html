@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let orderItem of selectedList">
+    <tr>
+      <td>{{ orderItem.name }}</td>
+      <td>{{ orderItem.quantity }}</td>
+      <td>{{ orderItem.totalAmount }}</td>
+    </tr>
+  </tbody>
+</table>

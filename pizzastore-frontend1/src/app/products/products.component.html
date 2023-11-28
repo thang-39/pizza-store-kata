@@ -1,0 +1,9 @@
+<div 
+  class="container" 
+  id="main-container">
+  <div class="row" id="team">
+    <div *ngFor="let product of products" class="col-xs-6 col-sm-3">
+      <app-product [product]="product"></app-product>
+    </div>
+  </div>
+</div>
