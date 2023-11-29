@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-26T16:23:24.504844961+07:00[Asia/Ho_Chi_Minh]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-29T10:26:08.761836926+07:00[Asia/Ho_Chi_Minh]")
 @Validated
 @Tag(name = "products", description = "the products API")
 public interface ProductsApi {
@@ -51,6 +51,7 @@ public interface ProductsApi {
     @Operation(
         operationId = "addProduct",
         summary = "add product",
+        tags = { "products" },
         responses = {
             @ApiResponse(responseCode = "201", description = "add new pizza successfully", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ProductDto.class))
@@ -94,6 +95,7 @@ public interface ProductsApi {
     @Operation(
         operationId = "deleteProductById",
         summary = "delete product by Id",
+        tags = { "products" },
         responses = {
             @ApiResponse(responseCode = "204", description = "delete existing pizza successfully", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))
@@ -113,6 +115,91 @@ public interface ProductsApi {
 
     // Override this method
     default  ResponseEntity<String> deleteProductById(UUID id) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /product-list : get All Products
+     *
+     * @return get all products (status code 200)
+     */
+    @Operation(
+        operationId = "getAll",
+        summary = "get All Products",
+        tags = { "products" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "get all products", content = {
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ProductDto.class)))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/product-list",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<List<ProductDto>> _getAll(
+        
+    ) {
+        return getAll();
+    }
+
+    // Override this method
+    default  ResponseEntity<List<ProductDto>> getAll() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "[ { \"images\" : [ \"images\", \"images\" ], \"price\" : 0.8008282, \"name\" : \"name\", \"description\" : \"description\", \"id\" : \"id\", \"category\" : \"category\" }, { \"images\" : [ \"images\", \"images\" ], \"price\" : 0.8008282, \"name\" : \"name\", \"description\" : \"description\", \"id\" : \"id\", \"category\" : \"category\" } ]";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /product-list/{category} : get product by category
+     *
+     * @param category  (required)
+     * @return OK (status code 200)
+     */
+    @Operation(
+        operationId = "getProductByCategory",
+        summary = "get product by category",
+        tags = { "products" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = {
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ProductDto.class)))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/product-list/{category}",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<List<ProductDto>> _getProductByCategory(
+        @Parameter(name = "category", description = "", required = true, in = ParameterIn.PATH) @PathVariable("category") String category
+    ) {
+        return getProductByCategory(category);
+    }
+
+    // Override this method
+    default  ResponseEntity<List<ProductDto>> getProductByCategory(String category) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "[ { \"images\" : [ \"images\", \"images\" ], \"price\" : 0.8008282, \"name\" : \"name\", \"description\" : \"description\", \"id\" : \"id\", \"category\" : \"category\" }, { \"images\" : [ \"images\", \"images\" ], \"price\" : 0.8008282, \"name\" : \"name\", \"description\" : \"description\", \"id\" : \"id\", \"category\" : \"category\" } ]";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

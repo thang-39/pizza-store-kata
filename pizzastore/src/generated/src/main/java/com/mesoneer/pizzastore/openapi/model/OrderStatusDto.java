@@ -21,12 +21,28 @@ import javax.annotation.Generated;
  * OrderStatusDto
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-26T16:23:24.504844961+07:00[Asia/Ho_Chi_Minh]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-29T10:26:08.761836926+07:00[Asia/Ho_Chi_Minh]")
 public class OrderStatusDto implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   private StatusDto status;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link OrderStatusDto#OrderStatusDto(StatusDto)}
+   */
+  @Deprecated
+  public OrderStatusDto() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public OrderStatusDto(StatusDto status) {
+    this.status = status;
+  }
 
   public OrderStatusDto status(StatusDto status) {
     this.status = status;
@@ -37,8 +53,8 @@ public class OrderStatusDto implements Serializable {
    * Get status
    * @return status
   */
-  @Valid 
-  @Schema(name = "status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull @Valid 
+  @Schema(name = "status", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("status")
   public StatusDto getStatus() {
     return status;

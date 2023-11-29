@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * ImageDto
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-26T16:23:24.504844961+07:00[Asia/Ho_Chi_Minh]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-29T10:26:08.761836926+07:00[Asia/Ho_Chi_Minh]")
 public class ImageDto implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -34,6 +34,23 @@ public class ImageDto implements Serializable {
   private String base64Content;
 
   private UUID productId;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link ImageDto#ImageDto(String, String)}
+   */
+  @Deprecated
+  public ImageDto() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public ImageDto(String contentType, String base64Content) {
+    this.contentType = contentType;
+    this.base64Content = base64Content;
+  }
 
   public ImageDto id(UUID id) {
     this.id = id;
@@ -84,8 +101,8 @@ public class ImageDto implements Serializable {
    * Get contentType
    * @return contentType
   */
-  
-  @Schema(name = "contentType", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "contentType", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("contentType")
   public String getContentType() {
     return contentType;
@@ -104,8 +121,8 @@ public class ImageDto implements Serializable {
    * Get base64Content
    * @return base64Content
   */
-  
-  @Schema(name = "base64Content", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "base64Content", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("base64Content")
   public String getBase64Content() {
     return base64Content;

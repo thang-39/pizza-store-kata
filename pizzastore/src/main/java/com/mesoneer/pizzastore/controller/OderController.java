@@ -19,7 +19,6 @@ public class OderController implements OrdersApi {
         return new ResponseEntity<>(orderService.placeOrder(orderDto), HttpStatus.OK);
     }
 
-
     @Override
     public ResponseEntity<OrderResponseDto> changeOrderStatus(Integer id, OrderStatusDto orderStatusDto) {
         return new ResponseEntity<>(orderService.changeOrderStatus(id, orderStatusDto), HttpStatus.OK);

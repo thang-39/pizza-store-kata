@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-26T16:23:24.504844961+07:00[Asia/Ho_Chi_Minh]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-29T10:26:08.761836926+07:00[Asia/Ho_Chi_Minh]")
 @Validated
 @Tag(name = "orders", description = "the orders API")
 public interface OrdersApi {
@@ -49,13 +49,18 @@ public interface OrdersApi {
      * @param id  (required)
      * @param orderStatusDto  (optional)
      * @return order status has been changed successfully (status code 200)
+     *         or API not found (status code 404)
      */
     @Operation(
         operationId = "changeOrderStatus",
         summary = "change status of order",
+        tags = { "orders" },
         responses = {
             @ApiResponse(responseCode = "200", description = "order status has been changed successfully", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = OrderResponseDto.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "API not found", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Object.class))
             })
         }
     )
@@ -97,6 +102,7 @@ public interface OrdersApi {
     @Operation(
         operationId = "placeOrder",
         summary = "order Pizza and/or Drink",
+        tags = { "orders" },
         responses = {
             @ApiResponse(responseCode = "201", description = "place order successfully", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = OrderResponseDto.class))

@@ -54,6 +54,16 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(id);
     }
 
+    @Override
+    public List<ProductDto> getAllProducts() {
+        return productRepository.findAll().stream().map(productMapper::toDto).toList();
+    }
+
+    @Override
+    public List<ProductDto> getProductsByCategory(String category) {
+        return productRepository.findByCategory(category).stream().map(productMapper::toDto).toList();
+    }
+
 //    public ImageDto savePizzaImage(Pizza pizzaEntity, String imageData) {
 //        String[] imageDataArray = imageData.split(",");
 //        Image entity = Image.builder()

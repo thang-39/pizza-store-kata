@@ -4,11 +4,18 @@ info:
   version: "2"
   description: pizza store kata version 2
 
+tags:
+  - name: products
+  - name: orders
+
 servers:
   - url: http://localhost:8080/api
+
 paths:
   /products:
     post:
+      tags:
+        - products
       summary: add product
       operationId: addProduct
       requestBody:
@@ -25,6 +32,8 @@ paths:
                 $ref: '#/components/schemas/ProductDto'
   /products/{id}:
     delete:
+      tags:
+        - products
       summary: delete product by Id
       operationId: deleteProductById
       parameters:
@@ -44,6 +53,8 @@ paths:
 
   /product-list:
     get:
+      tags:
+        - products
       summary: get All Products
       operationId: getAll
       responses:
@@ -57,6 +68,8 @@ paths:
                   $ref: '#/components/schemas/ProductDto'
   /product-list/{category}:
     get:
+      tags:
+        - products
       summary: get product by category
       operationId: getProductByCategory
       parameters:
@@ -76,6 +89,8 @@ paths:
                   $ref: '#/components/schemas/ProductDto'
   /orders/prepare:
     post:
+      tags:
+        - orders
       summary: order Pizza and/or Drink
       operationId: placeOrder
       requestBody:
@@ -92,6 +107,8 @@ paths:
                 $ref: '#/components/schemas/OrderResponseDto'
   /orders/change-status/{id}:
     patch:
+      tags:
+        - orders
       summary: change status of order
       operationId: changeOrderStatus
       parameters:
@@ -113,6 +130,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponseDto'
+        "404":
+          description: "API not found"
+          content:
+            application/json:
+              schema:
+                type: object
 
 components:
   schemas:
@@ -144,6 +167,9 @@ components:
             format: base64
     ImageDto:
       type: object
+      required:
+        - base64Content
+        - contentType
       properties:
         id:
           type: string
@@ -160,6 +186,12 @@ components:
           format: uuid
     OrderCreateDto:
       type: object
+      required:
+        - customerName
+        - phoneNumber
+        - deliveryTo
+        - finalAmount
+        - orderItems
       properties:
         id:
           type: integer
@@ -184,6 +216,10 @@ components:
             $ref: '#/components/schemas/OrderItemCreateDto'
     OrderItemCreateDto:
       type: object
+      required:
+        - productId
+        - quantity
+        - totalAmount
       properties:
         id:
           type: integer
@@ -243,6 +279,8 @@ components:
           format: float
     OrderStatusDto:
       type: object
+      required:
+        - status
       properties:
         status:
           $ref: '#/components/schemas/StatusDto'

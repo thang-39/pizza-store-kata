@@ -154,6 +154,7 @@
 								<delegatePattern>true</delegatePattern>
 								<serializableModel>true</serializableModel>
 								<interfaceOnly>true</interfaceOnly>
+								<useTags>true</useTags>
 							</configOptions>
 						</configuration>
 					</execution>

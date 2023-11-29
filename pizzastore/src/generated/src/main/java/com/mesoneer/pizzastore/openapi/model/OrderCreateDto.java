@@ -24,7 +24,7 @@ import javax.annotation.Generated;
  * OrderCreateDto
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-26T16:23:24.504844961+07:00[Asia/Ho_Chi_Minh]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-29T10:26:08.761836926+07:00[Asia/Ho_Chi_Minh]")
 public class OrderCreateDto implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -44,7 +44,27 @@ public class OrderCreateDto implements Serializable {
   private Float finalAmount;
 
   @Valid
-  private List<@Valid OrderItemCreateDto> orderItems;
+  private List<@Valid OrderItemCreateDto> orderItems = new ArrayList<>();
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link OrderCreateDto#OrderCreateDto(String, String, String, Float, List<@Valid OrderItemCreateDto>)}
+   */
+  @Deprecated
+  public OrderCreateDto() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public OrderCreateDto(String customerName, String phoneNumber, String deliveryTo, Float finalAmount, List<@Valid OrderItemCreateDto> orderItems) {
+    this.customerName = customerName;
+    this.phoneNumber = phoneNumber;
+    this.deliveryTo = deliveryTo;
+    this.finalAmount = finalAmount;
+    this.orderItems = orderItems;
+  }
 
   public OrderCreateDto id(Integer id) {
     this.id = id;
@@ -95,8 +115,8 @@ public class OrderCreateDto implements Serializable {
    * Get customerName
    * @return customerName
   */
-  
-  @Schema(name = "customerName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "customerName", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("customerName")
   public String getCustomerName() {
     return customerName;
@@ -115,8 +135,8 @@ public class OrderCreateDto implements Serializable {
    * Get phoneNumber
    * @return phoneNumber
   */
-  
-  @Schema(name = "phoneNumber", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "phoneNumber", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("phoneNumber")
   public String getPhoneNumber() {
     return phoneNumber;
@@ -135,8 +155,8 @@ public class OrderCreateDto implements Serializable {
    * Get deliveryTo
    * @return deliveryTo
   */
-  
-  @Schema(name = "deliveryTo", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "deliveryTo", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("deliveryTo")
   public String getDeliveryTo() {
     return deliveryTo;
@@ -175,8 +195,8 @@ public class OrderCreateDto implements Serializable {
    * Get finalAmount
    * @return finalAmount
   */
-  
-  @Schema(name = "finalAmount", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "finalAmount", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("finalAmount")
   public Float getFinalAmount() {
     return finalAmount;
@@ -203,8 +223,8 @@ public class OrderCreateDto implements Serializable {
    * Get orderItems
    * @return orderItems
   */
-  @Valid 
-  @Schema(name = "orderItems", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull @Valid 
+  @Schema(name = "orderItems", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("orderItems")
   public List<@Valid OrderItemCreateDto> getOrderItems() {
     return orderItems;

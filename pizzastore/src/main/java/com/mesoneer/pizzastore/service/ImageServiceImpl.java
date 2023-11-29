@@ -2,11 +2,14 @@
 //
 //import com.mesoneer.pizzastore.entity.Image;
 //import com.mesoneer.pizzastore.entity.Pizza;
+//import com.mesoneer.pizzastore.entity.Product;
 //import com.mesoneer.pizzastore.exception.ImageUploadException;
 //import com.mesoneer.pizzastore.mapper.ImageMapper;
 //import com.mesoneer.pizzastore.openapi.model.ImageDto;
 //import com.mesoneer.pizzastore.repository.ImageRepository;
 //import com.mesoneer.pizzastore.repository.PizzaRepository;
+//import com.mesoneer.pizzastore.repository.ProductRepository;
+//import exception.EntityNotFoundException;
 //import lombok.RequiredArgsConstructor;
 //import org.springframework.stereotype.Service;
 //import org.springframework.web.multipart.MultipartFile;
@@ -26,10 +29,12 @@
 //    private static final String IMAGE_DIR =  "src/main/resources/static/images/";
 //    private final ImageMapper imageMapper;
 //    private final ImageRepository imageRepository;
-//    private final PizzaRepository pizzaRepository;
+//    private final ProductRepository productRepository;
+//
 //    @Override
 //    public ImageDto savePizzaImages(UUID id, MultipartFile file) {
-//        Pizza pizzaEntity = pizzaRepository.findById(id).get();
+//        Product productEntity = productRepository.findById(id)
+//                .orElseThrow(() -> new EntityNotFoundException(id, Product.class));
 //
 //        // Generate a unique filename for the image
 //        String fileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
@@ -53,9 +58,9 @@
 //                .name(file.getOriginalFilename())
 //                .contentType(file.getContentType())
 ////                .filePath(targetPath.toString())
-//                .pizza(pizzaEntity)
+//                .product(productEntity)
 //                .build());
 //
-//        return imageMapper.toDto(entity);
+//        return imageMapper.toProductImageDto(entity);
 //    }
 //}

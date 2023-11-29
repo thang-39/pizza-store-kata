@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * OrderItemCreateDto
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-26T16:23:24.504844961+07:00[Asia/Ho_Chi_Minh]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-29T10:26:08.761836926+07:00[Asia/Ho_Chi_Minh]")
 public class OrderItemCreateDto implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -34,6 +34,24 @@ public class OrderItemCreateDto implements Serializable {
   private Integer quantity;
 
   private Float totalAmount;
+
+  /**
+   * Default constructor
+   * @deprecated Use {@link OrderItemCreateDto#OrderItemCreateDto(UUID, Integer, Float)}
+   */
+  @Deprecated
+  public OrderItemCreateDto() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public OrderItemCreateDto(UUID productId, Integer quantity, Float totalAmount) {
+    this.productId = productId;
+    this.quantity = quantity;
+    this.totalAmount = totalAmount;
+  }
 
   public OrderItemCreateDto id(Integer id) {
     this.id = id;
@@ -84,8 +102,8 @@ public class OrderItemCreateDto implements Serializable {
    * Get productId
    * @return productId
   */
-  @Valid 
-  @Schema(name = "productId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull @Valid 
+  @Schema(name = "productId", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("productId")
   public UUID getProductId() {
     return productId;
@@ -104,8 +122,8 @@ public class OrderItemCreateDto implements Serializable {
    * Get quantity
    * @return quantity
   */
-  
-  @Schema(name = "quantity", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "quantity", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("quantity")
   public Integer getQuantity() {
     return quantity;
@@ -124,8 +142,8 @@ public class OrderItemCreateDto implements Serializable {
    * Get totalAmount
    * @return totalAmount
   */
-  
-  @Schema(name = "totalAmount", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @NotNull 
+  @Schema(name = "totalAmount", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("totalAmount")
   public Float getTotalAmount() {
     return totalAmount;

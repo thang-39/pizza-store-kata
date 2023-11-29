@@ -7,13 +7,14 @@ import com.mesoneer.pizzastore.mapper.OrderMapper;
 import com.mesoneer.pizzastore.openapi.model.*;
 
 import com.mesoneer.pizzastore.repository.OrderRepository;
+import com.mesoneer.pizzastore.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -49,7 +50,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponseDto changeOrderStatus(Integer id, OrderStatusDto orderStatusDto) {
-        Order entity = orderRepository.findById(id).get();
+        Order entity = orderRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(id, Order.class));
         entity.setStatus(Status.fromValue(orderStatusDto.getStatus().getValue()));
         return orderMapper.toOrderResponseDto(orderRepository.save(entity));
     }
