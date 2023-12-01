@@ -1,16 +1,22 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let orderItem of selectedList">
-    <tr>
-      <td>{{ orderItem.name }}</td>
-      <td>{{ orderItem.quantity }}</td>
-      <td>{{ orderItem.totalAmount }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let orderItem of selectedList">
+          <tr>
+            <td>{{ orderItem.name }}</td>
+            <td>{{ orderItem.quantity }}</td>
+            <td>{{ orderItem.totalAmount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

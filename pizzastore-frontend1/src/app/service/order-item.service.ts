@@ -7,7 +7,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class OrderItemService {
   private selectedList: OrderItem[] = [];
-  constructor() { }
+  constructor() {
+    console.log(1);
+    
+   }
 
   public addProductToSelectedList(orderItem: OrderItem) {
     const existingIndex = this.selectedList.findIndex(item => item.productId === orderItem.productId);

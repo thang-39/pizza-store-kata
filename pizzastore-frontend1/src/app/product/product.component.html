@@ -1,33 +1,42 @@
 <!-- TEAM MEMBER 1 - START -->
-<div class="team-member">
+<div class="team-member justify-content-center">
   <div class="overlay-wrapper2">
     <img src="{{ product?.images[0] }}" class="img-responsive" alt="{{ product?.name }}-image">
   </div>
-  <h4>{{ product?.price }}</h4>
-  <span>{{ product?.name }}</span>
-  <p>{{ product?.description }}</p>
   
-  <div class="quantity-control">
-    <button 
-      class="btn btn-secondary" 
-      (click)="decrementQuantity()"
-      [disabled]="quantity === 0"><i class="fa fa-minus"
-      ></i></button>
-    <span>{{ quantity }}</span>
-    <button 
-      class="btn btn-primary" 
-      (click)="incrementQuantity()"><i class="fa fa-plus"></i></button>
+  <div class="text-center"> <!-- Added "text-center" class here -->
+    <h4>{{ product?.price | currency }}</h4>
+    <span>{{ product?.name }}</span>
+    <p>{{ product?.description }}</p>
+  </div>
+  
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-secondary" (click)="decrementQuantity()" [disabled]="quantity === 0">
+        <i class="fa fa-minus"></i>
+      </button>
+    </div>
+    <div class="col">
+      <span>{{ quantity }}</span>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="incrementQuantity()">
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
   </div>
 
-    <a
-      (click)="onAddToSelectedList()"
-      class="btn btn-primary tooltips"
-      data-placement="top"
-      data-original-title="Add"><i class="fa fa-check"></i> </a>
-    <a
-      (click)="onRemoveFromSelectedList()"
-      class="btn btn-secondary tooltips"
-      data-placement="top"
-      data-original-title="Remove"><i class="fa fa-times"></i></a>
+
+  <div class="d-flex justify-content-center">
+    
+      <a (click)="onAddToSelectedList()" class="btn btn-success" data-placement="top" data-original-title="Add"><i
+          class="fa fa-check"></i> </a>
+    
+    
+      <a (click)="onRemoveFromSelectedList()" class="btn btn-danger" data-placement="top"
+        data-original-title="Remove"><i class="fa fa-times"></i></a>
+    
+  </div>
 </div>
-<!-- TEAM MEMBER 1 - END -->
+  <!-- TEAM MEMBER 1 - END -->

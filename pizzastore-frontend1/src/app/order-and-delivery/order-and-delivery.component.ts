@@ -17,8 +17,8 @@ export class OrderAndDeliveryComponent {
   phoneNumber: string = '';
   deliveryTo: string = '';
   
-  
-  constructor(private orderService: OrdersService, private orderItemService: OrderItemService) {}
+  constructor(private orderService: OrdersService, 
+    private orderItemService: OrderItemService) {}
 
   ngOnInit(): void {
     this.getSelectedList();
@@ -35,7 +35,8 @@ export class OrderAndDeliveryComponent {
   }
 
   submitOrder() {
-    const order = new Order(this.customerName, this.phoneNumber, this.deliveryTo, this.finalAmount, this.selectedList);
+    const order = new Order(this.customerName, this.phoneNumber, 
+      this.deliveryTo, this.finalAmount, this.selectedList);
     console.log(order);
     
     this.orderService.placeOrder(order).subscribe(
