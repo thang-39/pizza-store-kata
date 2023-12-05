@@ -35,13 +35,24 @@ export class OrderAndDeliveryComponent {
   }
 
   submitOrder() {
-    const order = new Order(this.customerName, this.phoneNumber, 
-      this.deliveryTo, this.finalAmount, this.selectedList);
+    const order = {
+      customerName: this.customerName, 
+      phoneNumber: this.phoneNumber, 
+      deliveryTo: this.deliveryTo,
+      finalAmount: this.finalAmount, 
+      orderItems: this.selectedList,
+      status: null,
+    };
     console.log(order);
     
     this.orderService.placeOrder(order).subscribe(
       (response: Order) => {
-        
+        this.selectedList = [];
+        this.finalAmount = 0;
+        this.customerName = '';
+        this.phoneNumber = '';
+        this.deliveryTo = '';
+        this.orderItemService.resetSelectedList();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

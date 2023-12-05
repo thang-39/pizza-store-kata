@@ -24,10 +24,16 @@ export class LoginComponent {
   handleLogin() {
     this.authenticationService.authenticationService(this.username, this.password)
     .subscribe((result)=> {
+      console.log(result);
+      
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.successMessage = 'Login Successful.';
-      this.router.navigate(['/']);
+
+      this.authenticationService.loginStatusChange.emit(true);
+      this.authenticationService.rolesChange.emit(this.authenticationService.roles);
+      
+      this.router.navigate(['/pizza']);
     }, () => {
       this.invalidLogin = true;
       this.loginSuccess = false;

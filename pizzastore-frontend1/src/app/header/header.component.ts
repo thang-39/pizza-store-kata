@@ -11,6 +11,7 @@ import { ProductService } from '../service/product.service';
 })
 export class HeaderComponent {
   isLoggedIn = false;
+  roles: string[];
 
   constructor(private orderItemService: OrderItemService,
               private router: Router,
@@ -20,14 +21,29 @@ export class HeaderComponent {
   ngOnInit() {
     this.isLoggedIn = this.authenticationService.isUserLoggedIn();
     console.log('menu -> ' + this.isLoggedIn);
+    this.authenticationService.loginStatusChange.subscribe(
+      (loggedIn: boolean) => {
+        this.isLoggedIn = loggedIn;
+      }
+    )
+    this.authenticationService.rolesChange.subscribe(
+      (roles: string[]) => {
+        this.roles = roles;
+      }
+    )
   }
 
   handleLogout() {
     this.authenticationService.logout();
+    this.isLoggedIn = false;
   }
 
 
   public getSizeSelectedList(): number {
     return this.orderItemService.getSelectedList().length;
+  }
+
+  public hasRole(role: string): boolean {
+    return this.authenticationService.roles && this.authenticationService.roles.includes(role);
   }
 }

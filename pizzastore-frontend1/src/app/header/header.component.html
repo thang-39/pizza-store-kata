@@ -6,15 +6,18 @@
 
     <div class="collaps navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a routerLink="/pizza" >Pizza</a></li>
-        <li><a routerLink="/drink" >Drinks</a></li>
-        <li><a routerLink="/order">Order & Delivery ({{getSizeSelectedList()}})</a></li>
+        <li routerLinkActive="active"><a routerLink="/pizza">Pizza</a></li>
+        <li routerLinkActive="active"><a routerLink="/drink">Drinks</a></li>
+        <li routerLinkActive="active"><a routerLink="/order">Order & Delivery ({{getSizeSelectedList()}})</a></li>
+        <li routerLinkActive="active"><a routerLink="/receptionist" *ngIf="isLoggedIn && hasRole('ROLE_RECEPTIONIST')">Receptionist</a></li>
+        <li routerLinkActive="active"><a routerLink="/chef" *ngIf="isLoggedIn && hasRole('ROLE_CHEF')">Chef</a></li>
+        <li routerLinkActive="active"><a routerLink="/delivery" *ngIf="isLoggedIn && hasRole('ROLE_SHIPPER')">Shipping</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown" appDropdown>
+        <li class="dropdown" appDropdown outerLinkActive="active">
           <a class="dropdowm-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="/login">Login</a></li>
+            <li><a *ngIf="!isLoggedIn" href="/login">Login</a></li>
             <li><a 
               *ngIf="isLoggedIn" 
               routerLink="/login" 

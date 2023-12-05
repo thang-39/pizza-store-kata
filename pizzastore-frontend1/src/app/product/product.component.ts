@@ -29,7 +29,7 @@ export class ProductComponent {
   onAddToSelectedList() {
     const orderItem: OrderItem = {
       productId: this.product.id,
-      name: this.product.name,
+      productName: this.product.name,
       quantity: this.quantity,
       totalAmount: this.quantity * this.product.price,
     }

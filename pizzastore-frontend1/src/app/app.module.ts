@@ -15,6 +15,11 @@ import { LoginComponent } from './login/login.component';
 import { HttpInterceptorService } from './login/httpInterceptor.service';
 import { AppRoutingModule } from './app-routing.module';
 import { Routes , RouterModule} from '@angular/router';
+import { OrderProcessComponent } from './order-process/order-process.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { OrderChefComponent } from './order-chef/order-chef.component';
+import { OrderShipperComponent } from './order-shipper/order-shipper.component';
+
 
 
 
@@ -28,12 +33,16 @@ import { Routes , RouterModule} from '@angular/router';
     ProductsComponent,
     DropdownDirective,
     LoginComponent,
+    OrderProcessComponent,
+    OrderChefComponent,
+    OrderShipperComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    
   ],
   providers: [
     ProductService,

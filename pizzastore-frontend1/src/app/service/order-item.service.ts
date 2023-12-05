@@ -36,4 +36,7 @@ export class OrderItemService {
   public getSelectedList() {
     return this.selectedList;
   }
+  public resetSelectedList() {
+    this.selectedList = [];
+  }
 }
