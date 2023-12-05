@@ -1,4 +1,4 @@
-package com.mesoneer.pizzastore.config.security;
+package com.mesoneer.pizzastore.config.security.filter;
 
 import com.auth0.jwt.JWT;
 import jakarta.servlet.FilterChain;
@@ -33,7 +33,7 @@ public class JWTValidator extends OncePerRequestFilter {
             return;
         }
 
-        String token = header.replace("Bearer ",""); //only JWT
+        String token = header.replace("Bearer ","");//only JWT
         String user = JWT.require(HMAC512("w9z$C&E)H@McQfTjWnZr4u7x!A%D*G-JaNdRgUkXp2s5v8y/B?E(H+MbPeShVmYq"))
                 .build()
                 .verify(token)
@@ -42,7 +42,8 @@ public class JWTValidator extends OncePerRequestFilter {
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 user,
                 null,
-                this.getGrantedAuthorities(List.of("RECEPTIONIST", "CHEF", "SHIPPER")));
+                this.getGrantedAuthorities(List.of("ROLE_RECEPTIONIST", "ROLE_CHEF", "ROLE_SHIPPER")));
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request,response);
     }
@@ -51,5 +52,9 @@ public class JWTValidator extends OncePerRequestFilter {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorityEntities.forEach(a -> authorities.add(new SimpleGrantedAuthority(a)));
         return authorities;
+    }
+
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        return request.getServletPath().equals("/login");
     }
 }

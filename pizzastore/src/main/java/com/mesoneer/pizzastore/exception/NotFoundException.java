@@ -11,6 +11,9 @@ public class NotFoundException extends RuntimeException {
         super("The " + entity.getSimpleName().toLowerCase() + " with id: '" + id + "' does not exist in our records");
     }
 
+    public NotFoundException(String message) {
+        super(message);
+    }
 
     public NotFoundException(String id, Class<?> entity) {
         super("The " + entity.getSimpleName().toLowerCase() + " with id: '" + id + "' does not exist in our records");

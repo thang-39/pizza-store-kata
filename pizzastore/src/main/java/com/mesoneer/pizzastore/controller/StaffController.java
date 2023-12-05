@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class UserController implements StaffsApi {
+public class StaffController implements StaffsApi {
 
     private final StaffService staffService;
 

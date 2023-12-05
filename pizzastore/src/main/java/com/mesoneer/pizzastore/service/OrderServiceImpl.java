@@ -55,4 +55,22 @@ public class OrderServiceImpl implements OrderService {
         entity.setStatus(Status.fromValue(orderStatusDto.getStatus().getValue()));
         return orderMapper.toOrderResponseDto(orderRepository.save(entity));
     }
+
+    @Override
+    public OrderResponseDto changeOrderStatus(Integer id) {
+        Order entity = orderRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(id, Order.class));
+        if (entity.getStatus().equals(Status.PENDING))
+            entity.setStatus(Status.CONFIRMED);
+        else if (entity.getStatus().equals(Status.CONFIRMED))
+            entity.setStatus(Status.COOKED);
+        else if (entity.getStatus().equals(Status.COOKED))
+            entity.setStatus(Status.DONE);
+        return orderMapper.toOrderResponseDto(orderRepository.save(entity));
+    }
+
+    @Override
+    public List<OrderResponseDto> getOrderByStatus(String status) {
+        return orderRepository.findByStatus(Status.fromValue(status)).stream().map(orderMapper::toOrderResponseDto).toList();
+    }
 }

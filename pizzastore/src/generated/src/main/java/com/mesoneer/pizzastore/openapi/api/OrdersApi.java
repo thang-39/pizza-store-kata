@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-11-29T10:26:08.761836926+07:00[Asia/Ho_Chi_Minh]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-12-04T18:32:41.032111976+07:00[Asia/Ho_Chi_Minh]")
 @Validated
 @Tag(name = "orders", description = "the orders API")
 public interface OrdersApi {
@@ -83,6 +83,49 @@ public interface OrdersApi {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"deliveryTo\" : \"deliveryTo\", \"phoneNumber\" : \"phoneNumber\", \"finalAmount\" : 6.0274563, \"bookingDate\" : \"bookingDate\", \"id\" : 0, \"orderItems\" : [ { \"totalAmount\" : 2.302136, \"quantity\" : 5, \"orderId\" : 5, \"id\" : 1, \"productName\" : \"productName\" }, { \"totalAmount\" : 2.302136, \"quantity\" : 5, \"orderId\" : 5, \"id\" : 1, \"productName\" : \"productName\" } ], \"customerName\" : \"customerName\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /orders/{status} : get List orders with status
+     *
+     * @param status  (required)
+     * @return get orders successfully (status code 200)
+     */
+    @Operation(
+        operationId = "getOrdersByStatus",
+        summary = "get List orders with status",
+        tags = { "orders" },
+        responses = {
+            @ApiResponse(responseCode = "200", description = "get orders successfully", content = {
+                @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = OrderResponseDto.class)))
+            })
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/orders/{status}",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<List<OrderResponseDto>> _getOrdersByStatus(
+        @Parameter(name = "status", description = "", required = true, in = ParameterIn.PATH) @PathVariable("status") String status
+    ) {
+        return getOrdersByStatus(status);
+    }
+
+    // Override this method
+    default  ResponseEntity<List<OrderResponseDto>> getOrdersByStatus(String status) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "[ { \"deliveryTo\" : \"deliveryTo\", \"phoneNumber\" : \"phoneNumber\", \"finalAmount\" : 6.0274563, \"bookingDate\" : \"bookingDate\", \"id\" : 0, \"orderItems\" : [ { \"totalAmount\" : 2.302136, \"quantity\" : 5, \"orderId\" : 5, \"id\" : 1, \"productName\" : \"productName\" }, { \"totalAmount\" : 2.302136, \"quantity\" : 5, \"orderId\" : 5, \"id\" : 1, \"productName\" : \"productName\" } ], \"customerName\" : \"customerName\" }, { \"deliveryTo\" : \"deliveryTo\", \"phoneNumber\" : \"phoneNumber\", \"finalAmount\" : 6.0274563, \"bookingDate\" : \"bookingDate\", \"id\" : 0, \"orderItems\" : [ { \"totalAmount\" : 2.302136, \"quantity\" : 5, \"orderId\" : 5, \"id\" : 1, \"productName\" : \"productName\" }, { \"totalAmount\" : 2.302136, \"quantity\" : 5, \"orderId\" : 5, \"id\" : 1, \"productName\" : \"productName\" } ], \"customerName\" : \"customerName\" } ]";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
