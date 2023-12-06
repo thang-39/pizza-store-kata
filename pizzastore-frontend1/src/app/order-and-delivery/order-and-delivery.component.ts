@@ -49,9 +49,9 @@ export class OrderAndDeliveryComponent {
       (response: Order) => {
         this.selectedList = [];
         this.finalAmount = 0;
-        this.customerName = '';
-        this.phoneNumber = '';
-        this.deliveryTo = '';
+        this.customerName = null;
+        this.phoneNumber = null;
+        this.deliveryTo = null;
         this.orderItemService.resetSelectedList();
       },
       (error: HttpErrorResponse) => {
